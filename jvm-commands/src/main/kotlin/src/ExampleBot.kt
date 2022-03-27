@@ -2,20 +2,16 @@ package src
 
 
 import com.jessecorbett.diskord.api.channel.Embed
-import com.jessecorbett.diskord.api.common.Message
-import com.jessecorbett.diskord.api.common.User
-import com.jessecorbett.diskord.bot.BotContext
 import com.jessecorbett.diskord.bot.bot
 import com.jessecorbett.diskord.bot.classicCommands
 import com.jessecorbett.diskord.util.Colors
-import com.jessecorbett.diskord.util.discordCdn
 import com.jessecorbett.diskord.util.sendMessage
 import com.jessecorbett.diskord.util.sendReply
 
 
 
-val defaultColor = Colors.GREEN
-val battleColor = Colors.DARKRED
+const val defaultColor = Colors.GREEN
+const val battleColor = Colors.DARKRED
 
 fun Int.realizedChance(): Boolean {
     return this >= (0..100).random()
@@ -73,10 +69,7 @@ suspend fun main() {
             command("инвентарь") { message ->
                 if (Users.listUsers.containsKey(message.author))
                     channel(message.channelId).sendReply(
-                        message, embed = Embed(
-                            title = "Инвентарь",
-                            description = Users.listUsers[message.author]!!.getInventory()
-                        )
+                        message, embed = getInventory(message.author)
                     )
                 else channel(message.channelId).sendReply(message, embed = noUserException)
             }

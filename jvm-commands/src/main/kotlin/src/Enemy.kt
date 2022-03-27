@@ -8,9 +8,11 @@ object Enemy {
             override var accuracy: Int = 60
             override var weapon: AbstractWeapon = Weapons.createPistol()
             override var armor: AbstractArmor = Armors.createWindbreaker()
+            override var mask: AbstractMask = Masks.createRespirator()
             override var currentHealth: Int = maxHealth
             override var isKilled: Boolean = false
             override val chanceEvade: Int = 5
+            override var protection: Int = armor.protection + mask.protection
     }
 }}
 

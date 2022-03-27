@@ -1,5 +1,7 @@
 package src
 
+import com.jessecorbett.diskord.api.common.Embed
+
 class UserProfile: AbstractWarrior(){
 
     var role : Roles? = null
@@ -24,8 +26,29 @@ class UserProfile: AbstractWarrior(){
     private var totalWater = 100 //жажда
 
     //Экипировка
-    override var weapon = Weapons.createPistol()
-    override var armor = Armors.createWindbreaker()
+    override var weapon : AbstractWeapon = Weapons.createPistol()
+    override var armor : AbstractArmor = Armors.createWindbreaker()
+    override var mask: AbstractMask = Masks.createRespirator()
+    var bag: AbstractBag = Bags.createSchoolBag()
+    override var protection: Int = armor.protection + mask.protection
+
+    var currentSlots = bag.slots
+
+    var inventory : MutableMap<String,AbstractItems> = mutableMapOf(
+        weapon.name to weapon,
+        armor.name to armor,
+        mask.name to mask,
+        bag.name to bag
+    )
+
+    fun getItemsInventory() : String{
+        var str = ""
+        inventory.forEach{
+            str += "${it.value.emoji} ${it.key}"
+            str += "\n"
+        }
+        return str
+    }
 
 
     //время
@@ -47,7 +70,7 @@ class UserProfile: AbstractWarrior(){
 
 
 
-    var inventory : MutableList<AbstractItems> = mutableListOf()
+
 
 
     //ИЗМЕНЯЕМЫЕ ЗНАЧЕНИЯ
@@ -103,13 +126,5 @@ class UserProfile: AbstractWarrior(){
         return "<:eat:954390737154347028> $sqr $currentHunger/$totalHunger"
     }
 
-    fun getInventory() : String{
-        var listInventory = ""
-        for (i in 0..inventory.lastIndex){
-            listInventory += inventory[i].inventoryName
-            listInventory += "\n"
-        }
-        return listInventory
-    }
 
 }

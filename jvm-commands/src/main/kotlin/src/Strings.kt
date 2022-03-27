@@ -75,6 +75,18 @@ val noEnemys = Embed(
 )
 
 
+fun getInventory(u : User) : Embed {
+    return Embed(
+        title = "Инвентарь",
+        description = """
+                Использовано ${Users.listUsers[u]!!.currentSlots} из ${Users.listUsers[u]!!.bag.slots} слотов
+                
+                ${Users.listUsers[u]!!.getItemsInventory()}
+            """.trimIndent()
+    )
+}
+
+
 
 fun profileUser(author: User) : Embed = Embed(
     title = "\uD83D\uDC64 Профиль игрока: ${author.username}",
@@ -93,9 +105,9 @@ fun profileUser(author: User) : Embed = Embed(
                         
         """.trimIndent(),true),
         EmbedField("Экипировка","""
-            Маска - Отсутствует
-            ${Users.listUsers[author]!!.armor.emoji} ${Users.listUsers[author]!!.armor.name}
-            Рюкзак - Отсутствует
+            ${Users.listUsers[author]!!.mask!!.emoji} ${Users.listUsers[author]!!.mask!!.name}
+            ${Users.listUsers[author]!!.armor!!.emoji} ${Users.listUsers[author]!!.armor!!.name}
+            ${Users.listUsers[author]!!.bag.emoji} ${Users.listUsers[author]!!.bag.name}
             ${Users.listUsers[author]!!.weapon.emoji} ${Users.listUsers[author]!!.weapon.name}
         """.trimIndent(),true)
     )

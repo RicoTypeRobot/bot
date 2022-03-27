@@ -1,6 +1,5 @@
 package src
 
-import com.jessecorbett.diskord.api.common.Embed
 import com.jessecorbett.diskord.api.common.User
 
 

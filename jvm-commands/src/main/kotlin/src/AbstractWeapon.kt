@@ -1,6 +1,5 @@
 package src
 
-import com.jessecorbett.diskord.api.common.User
 
 abstract class AbstractWeapon : AbstractItems() {
     abstract val minDamage : Int
@@ -8,7 +7,7 @@ abstract class AbstractWeapon : AbstractItems() {
     abstract val coefficientCriticalDamage : Int
     abstract val chanceCriticalDamage : Int
 
-    fun critDamageRelized(w : AbstractWarrior) : Boolean {
+    private fun critDamageRelized(w : AbstractWarrior) : Boolean {
         return if (chanceCriticalDamage.realizedChance()){
             w.getCritDamage = true
             true

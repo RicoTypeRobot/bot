@@ -77,7 +77,7 @@ fun killEnemy(enemy: AbstractWarrior, author: User): Embed = Embed(
 )
 
 fun battle(author: User, enemy: AbstractWarrior): Embed {
-    var static: String = ""
+    var static = ""
     if (Users.listUsers[author]!!.run) {
         static += if (Users.listUsers[author]!!.currentEnergy == 0) "- У меня не хватило сил, чтобы начать побег"
         else escapeFail()
@@ -86,7 +86,7 @@ fun battle(author: User, enemy: AbstractWarrior): Embed {
         static += "- Я атакую ${enemy.name}."
         static += if (Users.listUsers[author]!!.currentEnergy == 0) "У меня не хватило сил, чтобы совершить атаку, поэтому я пропускаю ход"
         else if (enemy.dodged) " Мои выстрелы летят в молоко."
-        else if (enemy.getCritDamage) " ОГО! Мой выстрел попап прямо в грудь противника, при этом, я нанес ему КРИТИЧЕСКИЙ урон множителем X${Users.listUsers[author]!!.weapon.coefficientCriticalDamage} и нанес ${Users.listUsers[author]!!.enemy!!.recDamage} урона!"
+        else if (enemy.getCritDamage) " ОГО! Мой выстрел попап прямо в грудь противника, при этом, я нанес ему КРИТИЧЕСКИЙ урон множителем X${Users.listUsers[author]!!.weapon!!.coefficientCriticalDamage} и нанес ${Users.listUsers[author]!!.enemy!!.recDamage} урона!"
         else " Нанесено ${enemy.recDamage} урона."
     }
     static += "\n"
@@ -94,8 +94,8 @@ fun battle(author: User, enemy: AbstractWarrior): Embed {
     static += if (Users.listUsers[author]!!.dodged) " к счастью мне удалось увернуться"
     else if (Users.listUsers[author]!!.getCritDamage) "O НЕТ! Противник нанес мне КРИТИЧЕСКИЙ урон множителем Х${enemy.weapon.coefficientCriticalDamage}, при этом он нанес мне ${Users.listUsers[author]!!.recDamage} урона"
     else " и я теряю ${Users.listUsers[author]!!.recDamage} здоровья."
-    if (Users.listUsers[author]!!.armor.protection > 0)
-        static += " Моя броня взяла на себя часть урона в размере: ${Users.listUsers[author]!!.armor.protection} единиц"
+    if (Users.listUsers[author]!!.armor!!.protection > 0)
+        static += " Моя броня взяла на себя часть урона в размере: ${Users.listUsers[author]!!.armor!!.protection} единиц"
 
     static += "\n\n"
     static += "**${enemy.name}** ${enemy.getHP()}"

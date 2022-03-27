@@ -6,7 +6,11 @@ abstract class AbstractWarrior : InterfaceWarrior {
     abstract var currentHealth: Int
     abstract var weapon: AbstractWeapon
     abstract var armor: AbstractArmor
+    abstract var mask: AbstractMask
     abstract var accuracy: Int
+    abstract var protection : Int
+
+
 
     //события
     var getCritDamage : Boolean = false
@@ -26,7 +30,7 @@ abstract class AbstractWarrior : InterfaceWarrior {
 
     override fun attack(warrior: AbstractWarrior) {
         if (accuracy.realizedChance() && getDodgedEnemy(warrior)) {
-            warrior.getDamage(weapon.currentDamage(warrior)-armor.protection)
+            warrior.getDamage(weapon.currentDamage(warrior) - warrior.protection)
         }
     }
 
@@ -34,9 +38,9 @@ abstract class AbstractWarrior : InterfaceWarrior {
         var sqr = ""
         val oneSqrEnergy : Int = maxHealth/10
         for(i in oneSqrEnergy..maxHealth step oneSqrEnergy){
-            if (i <= currentHealth){
-                sqr += "▰"
-            }else sqr += "▱"
+            sqr += if (i <= currentHealth){
+                "▰"
+            }else "▱"
         }
         return "<:hp:954162722260520980> $sqr ${this.currentHealth}/${this.maxHealth}"
     }
