@@ -8,6 +8,7 @@ import com.jessecorbett.diskord.bot.BotContext
 import com.jessecorbett.diskord.bot.bot
 import com.jessecorbett.diskord.bot.classicCommands
 import com.jessecorbett.diskord.util.Colors
+import com.jessecorbett.diskord.util.discordCdn
 import com.jessecorbett.diskord.util.sendMessage
 import com.jessecorbett.diskord.util.sendReply
 
@@ -22,7 +23,7 @@ fun Int.realizedChance(): Boolean {
 
 
 suspend fun main() {
-    bot("OTUwODcwNTY1MzUzMzA4MjAw.YifNOQ.0qghtmJfN2AOo4jAHicYzOJqn6c") {
+    bot("") {
 
         classicCommands(".") {
 

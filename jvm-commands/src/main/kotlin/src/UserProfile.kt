@@ -25,6 +25,7 @@ class UserProfile: AbstractWarrior(){
 
     //Экипировка
     override var weapon = Weapons.createPistol()
+    override var armor = Armors.createWindbreaker()
 
 
     //время

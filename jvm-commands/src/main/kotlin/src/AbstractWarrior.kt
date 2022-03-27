@@ -5,6 +5,7 @@ abstract class AbstractWarrior : InterfaceWarrior {
     abstract var maxHealth: Int
     abstract var currentHealth: Int
     abstract var weapon: AbstractWeapon
+    abstract var armor: AbstractArmor
     abstract var accuracy: Int
 
     //события
@@ -18,19 +19,19 @@ abstract class AbstractWarrior : InterfaceWarrior {
         recDamage = 0
     }
 
-    fun getDodgedEnemy(w : AbstractWarrior) : Boolean{
+    private fun getDodgedEnemy(w : AbstractWarrior) : Boolean{
         w.dodged = w.chanceEvade.realizedChance()
         return !w.dodged
     }
 
     override fun attack(warrior: AbstractWarrior) {
         if (accuracy.realizedChance() && getDodgedEnemy(warrior)) {
-            warrior.getDamage(weapon.currentDamage(warrior))
+            warrior.getDamage(weapon.currentDamage(warrior)-armor.protection)
         }
     }
 
     fun getHP() : String{
-        var sqr : String = ""
+        var sqr = ""
         val oneSqrEnergy : Int = maxHealth/10
         for(i in oneSqrEnergy..maxHealth step oneSqrEnergy){
             if (i <= currentHealth){

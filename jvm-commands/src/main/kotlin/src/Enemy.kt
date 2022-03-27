@@ -7,6 +7,7 @@ object Enemy {
             override var maxHealth: Int = 20
             override var accuracy: Int = 60
             override var weapon: AbstractWeapon = Weapons.createPistol()
+            override var armor: AbstractArmor = Armors.createWindbreaker()
             override var currentHealth: Int = maxHealth
             override var isKilled: Boolean = false
             override val chanceEvade: Int = 5
